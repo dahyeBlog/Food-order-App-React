@@ -7,10 +7,10 @@ import CartContext from '../../../store/cart-context';
 
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext)
-
+    
   const price = `${props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원`
 
-  const addToCartHandler = (amount) => {
+  const addToCartHandler = (amount) => {    
     cartCtx.addItem({
       id: props.id,
       name: props.name,
@@ -18,8 +18,6 @@ const MealItem = (props) => {
       price: props.price,
     })
   }
-
-
 
   return (
     <li className={classes.meal}>
