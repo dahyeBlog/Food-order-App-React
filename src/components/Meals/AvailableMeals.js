@@ -1,38 +1,66 @@
+import { useEffect ,useState} from 'react';
+
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css'
 
-const DUMMY_MEALS = [
-  {
-    id: 'm1',
-    name: '불고기',
-    description: '얇게 저민 쇠고기를 양념에 재워 불에 구워 먹는 달콤하고 부드러운 불고기',
-    price: 20000,
-  },
-  {
-    id: 'm2',
-    name: '닭갈비',
-    description: '매콤한 고추장 양념에 버물려 볶은 닭갈비',
-    price: 16000,
-  },
-  {
-    id: 'm3',
-    name: '삼겹살',
-    description: '육질이 부드럽고 고소한 돼지고기를 직접 불판에 구워 먹는 삼겹살',
-    price: 12000,
-  },
-  {
-    id: 'm4',
-    name: '떡볶이',
-    description: '매콤 달달한 떡볶이',
-    price: 10000,
-  },
-];
 
 
 const AvailableMeals = () => {
+  const [meals, setMeals] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [httpError, setHttpError] = useState()
 
-  const mealsList = DUMMY_MEALS.map((meal) => (
+  useEffect(()=> {
+    const fetchMeals = async () => {
+     const response = await fetch('https://food-app-http-eed1a-default-rtdb.firebaseio.com/meals.json')
+
+     if(!response.ok) {
+      throw new Error('에러가 발생했습니다.')
+    }
+
+
+     const responseData = await response.json()
+
+     const loadedMeals = []
+
+     for (const key in responseData) {
+      
+      loadedMeals.push({
+      id:key,
+      name: responseData[key].name,
+      description: responseData[key].description,
+      price: responseData[key].price,
+      })
+    
+    }
+     setMeals(loadedMeals)
+     setIsLoading(false)
+    }
+  
+    fetchMeals().catch((error) => {
+      setIsLoading(false)
+      setHttpError(error.message)
+    })
+  },[])
+
+  if(isLoading) {
+    return ( 
+    <section className={classes.MealsLoading}>
+      <p>Loading...</p>
+    </section>)
+  }
+
+  if(httpError) {
+  return (
+    <section className={classes.MealsError}>
+      <p>{httpError}</p>
+    </section>
+    )
+}
+
+
+  const mealsList = meals.map((meal) => (
    <MealItem
     id={meal.id}
     key={meal.id}
