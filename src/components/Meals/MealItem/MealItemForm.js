@@ -1,30 +1,28 @@
-import { useRef, useState } from 'react';
-
-import Input from '../../UI/Input';
-import classes from './MealItemForm.module.css';
+import {useRef} from 'react'
+import Input from '../../UI/Input'
+import classes from "./MealItemForm.module.css"
 
 const MealItemForm = (props) => {
-  const [amountIsValid, setAmountIsValid] = useState(true);
-  const amountInputRef = useRef();
+  const amountInputRef = useRef()
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = (e) => {
+    e.preventDefault()
 
     const enteredAmount = amountInputRef.current.value;
 
-    const enteredAmountNumber = +enteredAmount;
+    const enteredAmountNumber = +enteredAmount
 
-    if (
-      enteredAmount.trim().length === 0 ||
+    if(enteredAmount.trim().length === 0 || 
       enteredAmountNumber < 1 ||
       enteredAmountNumber > 5
     ) {
-      setAmountIsValid(false);
-      return;
+
+      return 
     }
 
-    props.onAddToCart(enteredAmountNumber);
-  };
+    props.onAddToCart(enteredAmountNumber)
+  }
+
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
@@ -38,11 +36,10 @@ const MealItemForm = (props) => {
           max:'5',
           step:'1',
           defaultValue:'1',
-
         }}
        />
-      <button> 추가</button>
-      {!amountIsValid && <p>수량을 선택해주세요.</p>}
+
+      <button>추가</button>
     </form>
   )
 }

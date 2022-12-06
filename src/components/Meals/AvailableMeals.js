@@ -1,80 +1,61 @@
-import { useEffect ,useState} from 'react';
-
-import Card from '../UI/Card';
-import MealItem from './MealItem/MealItem';
-import classes from './AvailableMeals.module.css'
-
-
+import React,{useState, useEffect} from 'react'
+import classes from "./AvailableMeals.module.css"
+import MealItem from './MealItem/MealItem'
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [httpError, setHttpError] = useState()
 
-  useEffect(()=> {
+  useEffect(() => {
     const fetchMeals = async () => {
-     const response = await fetch('https://food-app-http-eed1a-default-rtdb.firebaseio.com/meals.json')
+      const response = await fetch ('https://food-app-react-bf217-default-rtdb.firebaseio.com/menu.json')
 
-     if(!response.ok) {
-      throw new Error('에러가 발생했습니다.')
+      if(!response.ok) {
+        throw new Error('에러가 발생했습니다.')
+      }
+
+      const responseData = await response.json()
+
+      const loadedMeals = []
+
+      for(const key in responseData) {
+        loadedMeals.push({
+          id:key,
+          name: responseData[key].name,
+          description: responseData[key].des,
+          price: responseData[key].price,
+          image: responseData[key].image
+        })
+      }
+
+      setMeals(loadedMeals)
+
     }
 
-
-     const responseData = await response.json()
-
-     const loadedMeals = []
-
-     for (const key in responseData) {
-      
-      loadedMeals.push({
-      id:key,
-      name: responseData[key].name,
-      description: responseData[key].description,
-      price: responseData[key].price,
-      })
-    
-    }
-     setMeals(loadedMeals)
-     setIsLoading(false)
-    }
-  
     fetchMeals().catch((error) => {
-      setIsLoading(false)
-      setHttpError(error.message)
+      console.log(error);
+      
     })
-  },[])
 
-  if(isLoading) {
-    return ( 
-    <section className={classes.MealsLoading}>
-      <p>Loading...</p>
-    </section>)
-  }
-
-  if(httpError) {
-  return (
-    <section className={classes.MealsError}>
-      <p>{httpError}</p>
-    </section>
-    )
-}
+  }, [])
 
 
-  const mealsList = meals.map((meal) => (
-   <MealItem
+  const mealsList = meals.map((meal) => {
+  return <MealItem 
     id={meal.id}
     key={meal.id}
     name={meal.name}
     description={meal.description}
-    price={meal.price}
-    />
-  ))
+    price={meal.price}  
+    image={meal.image}/>  
+    })
+
+
 
   return (
-    <section className={classes.meals}>
-     <Card>
-      <ul>{mealsList}</ul>
-     </Card>
+    <section>
+      <div className={classes.mealLists}>
+        <ul>{mealsList}</ul>
+      </div>
     </section>
   )
 }
