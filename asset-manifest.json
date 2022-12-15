@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Food-order-App-React/static/css/main.d75a891a.chunk.css",
-    "main.js": "/Food-order-App-React/static/js/main.6754241d.chunk.js",
-    "main.js.map": "/Food-order-App-React/static/js/main.6754241d.chunk.js.map",
+    "main.css": "/Food-order-App-React/static/css/main.5af6e05a.chunk.css",
+    "main.js": "/Food-order-App-React/static/js/main.e23ba00a.chunk.js",
+    "main.js.map": "/Food-order-App-React/static/js/main.e23ba00a.chunk.js.map",
     "runtime-main.js": "/Food-order-App-React/static/js/runtime-main.4d8484a5.js",
     "runtime-main.js.map": "/Food-order-App-React/static/js/runtime-main.4d8484a5.js.map",
-    "static/js/2.9840d501.chunk.js": "/Food-order-App-React/static/js/2.9840d501.chunk.js",
-    "static/js/2.9840d501.chunk.js.map": "/Food-order-App-React/static/js/2.9840d501.chunk.js.map",
+    "static/js/2.459e0822.chunk.js": "/Food-order-App-React/static/js/2.459e0822.chunk.js",
+    "static/js/2.459e0822.chunk.js.map": "/Food-order-App-React/static/js/2.459e0822.chunk.js.map",
     "index.html": "/Food-order-App-React/index.html",
-    "static/css/main.d75a891a.chunk.css.map": "/Food-order-App-React/static/css/main.d75a891a.chunk.css.map",
-    "static/js/2.9840d501.chunk.js.LICENSE.txt": "/Food-order-App-React/static/js/2.9840d501.chunk.js.LICENSE.txt",
+    "static/css/main.5af6e05a.chunk.css.map": "/Food-order-App-React/static/css/main.5af6e05a.chunk.css.map",
+    "static/js/2.459e0822.chunk.js.LICENSE.txt": "/Food-order-App-React/static/js/2.459e0822.chunk.js.LICENSE.txt",
     "static/media/logo.19e5405f.png": "/Food-order-App-React/static/media/logo.19e5405f.png",
     "static/media/meals.e3f1ccbf.jpg": "/Food-order-App-React/static/media/meals.e3f1ccbf.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.4d8484a5.js",
-    "static/js/2.9840d501.chunk.js",
-    "static/css/main.d75a891a.chunk.css",
-    "static/js/main.6754241d.chunk.js"
+    "static/js/2.459e0822.chunk.js",
+    "static/css/main.5af6e05a.chunk.css",
+    "static/js/main.e23ba00a.chunk.js"
   ]
 }
